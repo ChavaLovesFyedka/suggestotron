@@ -67,6 +67,12 @@ class TopicsController < ApplicationController
     redirect_to(topics_path) #tells the browser to go back to topics_path (the topics list).
   end
 
+  def downvote
+    @topic = Topic.find(params[:id]) #finds the topic in the database with that id and stores it in the variable @topic.
+    @topic.votes.first.destroy #deletes a new vote for the current topic and saves it in the database.
+    redirect_to(topics_path) #tells the browser to go back to topics_path (the topics list).
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_topic
